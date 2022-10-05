@@ -8,6 +8,30 @@
 float err = 0;      // Global variable 
 int inter = 0;      // Global variable
 
+
+void system(){
+    int dim;
+    printf("\n\n\t\t Enter with the dimension of the matrix: ");
+    scanf("%d", &dim);
+    while (dim < 1)
+    {
+        printf("\n\n\t\t Invalid dimension %d of the matrix, enter again: ", dim);
+        scanf("%d", &dim);
+    }
+
+    float matrix[dim][dim];
+    float constant[dim];
+
+    //fflush(stdin);      //Capture \n
+
+    for(int i = 0; i < dim; i++){
+        for(int j = 0; j < dim; j++){
+            printf("\n\n\t\t Enter with the a[%d][%d] coefficient: ", i+1, j+1);
+            scanf("%f", &matrix[i][j]);
+        }
+    }
+}
+
 // Function to enter with the error to stop the program
 void initialError(){
     printf("\n\n\t\t Enter error to stop: ");
