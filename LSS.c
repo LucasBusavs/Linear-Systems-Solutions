@@ -5,35 +5,9 @@
 //#include <ctype.h>       Most of the functions in this library serve to sort ASCII characters,  only necessary if use "void enterFunction()"
 #include <windows.h>    // Contains declarations for all Windows API functions
 
-float err = 0;      // Global variable 
-int inter = 0;      // Global variable
-
-
-void system(){
-    int dim;
-    printf("\n\n\t\t Enter with the dimension of the matrix: ");
-    scanf("%d", &dim);
-    while (dim < 1)
-    {
-        printf("\n\n\t\t Invalid dimension %d of the matrix, enter again: ", dim);
-        scanf("%d", &dim);
-    }
-
-    float matrix[dim][dim];
-    float constant[dim];
-
-    //fflush(stdin);      //Capture \n
-
-    for(int i = 0; i < dim; i++){
-        for(int j = 0; j < dim; j++){
-            printf("\n\n\t\t Enter with the a[%d][%d] coefficient: ", i+1, j+1);
-            scanf("%f", &matrix[i][j]);
-        }
-    }
-}
-
 // Function to enter with the error to stop the program
-void initialError(){
+float initialError(){
+    float err;
     printf("\n\n\t\t Enter error to stop: ");
     scanf("%f", &err);
     if(err >= 1){
@@ -41,10 +15,12 @@ void initialError(){
        scanf("%f", &err);
     }
     system("cls");
+    return err;
 }
 
 // Function to enter with the amount of interections that the program has to execute
-void interaction(){
+int interaction(){
+    int inter;
     printf("\n\n\t\t Enter the amount of interaction: ");
     scanf("%d", &inter);
     while (inter < 1)
@@ -53,6 +29,7 @@ void interaction(){
         scanf("%d", &inter);
     }
     system("cls");
+    return inter;
 }
 
 // Function to calculate the absolute value of any real value
@@ -74,9 +51,12 @@ double relativeError(double xk, double xkl1){
 
 int main(){
     int choose;
+    int dim;
+    float err0;
+    int inter;
     do{
         printf("\n\n\t\t ********************************************************************");
-        printf("\n\t\t                      WELCOME TO THE LINEAR SYSTEMS SOLUTIONS");
+        printf("\n\t\t                WELCOME TO THE LINEAR SYSTEMS SOLUTIONS");
         printf("\n\t\t ********************************************************************");
         printf("\n\n\t\t 1 - Jacobi Method");
 		printf("\n\n\t\t 2 - Gauss-Seidel Method");
@@ -90,9 +70,31 @@ int main(){
         system("cls");
 
         if (choose != 3){
-           interaction();
-           initialError();
-           system("cls");
+            inter = interaction();
+            err0 = initialError();
+            printf("\n\n\t\t Enter with the dimension of the matrix: ");
+            scanf("%d", &dim);
+            while (dim < 1)
+            {
+                printf("\n\n\t\t Invalid dimension %d of the matrix, enter again: ", dim);
+                scanf("%d", &dim);
+            }
+
+            float matrix[dim][dim];
+            float constant[dim];
+
+            for(int i = 0; i < dim; i++){
+                for(int j = 0; j < dim; j++){
+                    printf("\n\n\t\t Enter with the a[%d][%d] coefficient: ", i+1, j+1);
+                    scanf("%f", &matrix[i][j]);
+                }
+            }
+
+            for(int i = 0; i < dim; i++){
+                printf("\n\n\t\t Enter with the b[%d][1] coefficient: ", i+1);
+                scanf("%f", &constant[i]);
+            }
+           //system("cls");
         }
 
         switch (choose)
