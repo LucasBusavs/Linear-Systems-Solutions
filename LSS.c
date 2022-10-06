@@ -49,6 +49,29 @@ double relativeError(double xk, double xkl1){
     return calc_error;
 }
 
+void jacobi(int dim, int inter, float err0){
+    float matrix[dim][dim];
+    float constant[dim];
+    float initial[dim];
+
+    for(int i = 0; i < dim; i++){
+        for(int j = 0; j < dim; j++){
+            printf("\n\n\t\t Enter with the a[%d][%d] coefficient: ", i+1, j+1);
+            scanf("%f", &matrix[i][j]);
+        }
+    }
+
+    for(int i = 0; i < dim; i++){
+        printf("\n\n\t\t Enter with the b[%d][1] coefficient: ", i+1);
+        scanf("%f", &constant[i]);
+    }
+
+    for(int i = 0; i < dim; i++){
+        printf("\n\n\t\t Enter with the x[%d][1] initial: ", i+1);
+        scanf("%f", &initial[i]);
+    }
+}
+
 int main(){
     int choose;
     int dim;
@@ -78,21 +101,6 @@ int main(){
             {
                 printf("\n\n\t\t Invalid dimension %d of the matrix, enter again: ", dim);
                 scanf("%d", &dim);
-            }
-
-            float matrix[dim][dim];
-            float constant[dim];
-
-            for(int i = 0; i < dim; i++){
-                for(int j = 0; j < dim; j++){
-                    printf("\n\n\t\t Enter with the a[%d][%d] coefficient: ", i+1, j+1);
-                    scanf("%f", &matrix[i][j]);
-                }
-            }
-
-            for(int i = 0; i < dim; i++){
-                printf("\n\n\t\t Enter with the b[%d][1] coefficient: ", i+1);
-                scanf("%f", &constant[i]);
             }
            //system("cls");
         }
